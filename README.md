@@ -5,8 +5,8 @@ organization automatically, using a Doctrine SQL Filter - no repeated
 `WHERE organization_id = ...` in every repository method, no accidental
 cross-tenant data leaks.
 
-Companion code for the article *"How to add multi-tenancy to Symfony with
-Doctrine SQL Filters"*.
+Companion code for the article
+[*How to add multi-tenancy to Symfony with Doctrine SQL Filters*](https://victorsh.dev/blog/row-level-multitenancy-doctrine-sql-filters).
 
 ## How it works
 
@@ -76,7 +76,9 @@ the listener from enabling it (comment out the body of `initializeContext()` in
 `src/EventListener/RequestListener.php`). The dashboard will then show **all**
 rows from both tenants.
 
-## Caveats (see the article)
+## Caveats
+
+(Covered in detail in [the article](https://victorsh.dev/blog/row-level-multitenancy-doctrine-sql-filters).)
 
 The filter only applies where the ORM generates the SQL. It does **not** cover:
 
