@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Private area{% endblock %}
+
+{% block body %}
+<div style="font-family: sans-serif; max-width: 720px; margin: 2rem auto;">
+    <h1>Private area</h1>
+
+    <p>
+        Logged in as <strong>{{ app.user.userIdentifier }}</strong>
+        — organization <strong>{{ app.user.organization.title }}</strong>
+        (<a href="/logout">logout</a>)
+    </p>
+
+    <h2>Documents ({{ documents|length }})</h2>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <tr><th>id</th><th>organization</th></tr>
+        {% for d in documents %}
+            <tr><td>{{ d.id }}</td><td>{{ d.organization.title }}</td></tr>
+        {% else %}
+            <tr><td colspan="2">— none —</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>Employees ({{ employees|length }})</h2>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <tr><th>id</th><th>team</th><th>organization</th></tr>
+        {% for e in employees %}
+            <tr><td>{{ e.id }}</td><td>{{ e.team.id }}</td><td>{{ e.team.organization.title }}</td></tr>
+        {% else %}
+            <tr><td colspan="3">— none —</td></tr>
+        {% endfor %}
+    </table>
+
+    <p style="margin-top: 1.5rem; color: #666;">
+        With the tenant filter on, every row above must belong to <em>your</em> organization only.
+        Log in as the other tenant and the lists should swap completely.
+    </p>
+</div>
+{% endblock %}
